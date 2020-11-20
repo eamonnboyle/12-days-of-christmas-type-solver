@@ -14,7 +14,7 @@ const DaysTuple = [
     'First',
 ] as const;
 type DaysTupleType = typeof DaysTuple
-type Days = DaysTupleType[number];
+type Day = DaysTupleType[number];
 
 const GiftsTuple = [
     "12 Drummers Drumming",
@@ -31,26 +31,25 @@ const GiftsTuple = [
     "A partridge in a pear tree",
 ] as const;
 type GiftsTupleType = typeof GiftsTuple;
-type Gifts = GiftsTupleType[number];
+type Gift = GiftsTupleType[number];
 
-type FirstLine<D extends Days> = `On the ${D} day of Christmas my true love sent to me,`
+type FirstLine<D extends Day> = `On the ${D} day of Christmas my true love sent to me,`
 
-type DayVerse<D extends Days, G extends [...Gifts[]]> =
+type DayVerse<D extends Day, G extends readonly [...Gift[]]> =
     [FirstLine<D>, ...G]
 
 type Tail<T> =
     T extends readonly [infer U, ...infer T]
-        ? T extends readonly [...any[]]
-            ? T
-            : []
+        ? T
         : [];
 
-type GiftsForDay<D extends readonly [...Days[]], G extends readonly [...Gifts[]]> =
+type GiftsForDay<D extends readonly [...Day[]], G extends readonly [...Gift[]]> =
     D["length"] extends 0
         ? []
         : [G[0], ...GiftsForDay<Tail<D>, Tail<G>>]
-
-export type TwelveDaysOfChristmas<D extends readonly [...Days[]] = DaysTupleType, G extends [...Gifts[]] = GiftsTupleType> =
+       
+export type TwelveDaysOfChristmas<D extends readonly [...Day[]] = DaysTupleType, G extends readonly [...Gift[]] = GiftsTupleType> =
     D["length"] extends 0
     ? []
+    // @ts-ignore
     : [...TwelveDaysOfChristmas<Tail<D>, Tail<G>>, DayVerse<D[0], GiftsForDay<D, G>>]
