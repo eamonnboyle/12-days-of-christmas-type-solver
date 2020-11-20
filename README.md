@@ -5,6 +5,9 @@ pushing the advanced features of TypeScript's type system
 to the limits by using it to generate a type for the lyrics
 of [The 12 Days of Christmas](https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song)).
 
+There is an associated [TypeScript 4.1 blog post](https://instil.co/blog/crazy-powerful-typescript-41/)
+that covers some of the features that are used. 
+
 Note that we are not executing code or using data, we're only
 defining types, but the types are compiled so that only
 the lyrics is a valid value for the type.
