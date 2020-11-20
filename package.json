@@ -4,7 +4,7 @@
   "description": "Generates a 12 that can only be the lyrics of The 12 Days of Christmas. Why? Because!",
   "dependencies": {},
   "devDependencies": {
-    "typescript": "^4.1.1-rc"
+    "typescript": "^4.1.2"
   },
   "scripts": {
     "build": "tsc"
